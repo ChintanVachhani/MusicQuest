@@ -21,7 +21,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #18BC9C;
+    color: black;
     outline: none;
 }
 
@@ -648,6 +648,7 @@ html, body {
     min-height: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+    text-align: center;
 }
 
 #header-div, #footer-div {
@@ -667,4 +668,17 @@ th, td {
 /* Sortable Icons*/
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
     content: " \25B4\25BE"
+}
+
+.message {
+    margin-top: 50px;
+    display: block;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.25em;
+}
+
+#navigationLinks {
+    margin: 30px auto;
 }

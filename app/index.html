@@ -81,7 +81,7 @@
 </header>
 
 <!-- Display Section -->
-<div id="display-div" class="container" ng-hide="searchComplete">
+<div id="display-div" class="container">
     <table class="table sortable" id="display-table">
         <thead class="thead-inverse">
         <tr>
@@ -102,6 +102,16 @@
         </tr>
         </tbody>
     </table>
+
+    <span class="message" ng-hide="searchSuccessful">No Search Results.</span>
+
+    <div id="navigationLinks">
+        <span>
+            <a href="" ng-click="getPreviousTracks()"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" ng-click="getNextTracks()"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+        </span>
+    </div>
 </div>
 
 <!-- Footer -->
