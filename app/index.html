@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="musicQuestApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="musicQuestApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="musicQuestApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="musicQuestApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Music Quest</title>
+    <meta name="description" content="A Music Search Application using Spotify Web-API">
+    <meta name="author" content="Chintan Vachhani">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bower Generated components -->
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo-black.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Font Awesome CDN -->
+    <script src="https://use.fontawesome.com/9c57e276a9.js"></script>
+
+    <!-- Custom styles from open source theme -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+</head>
+<body class="index" id="page-top" ng-controller="displayViewController">
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-light navbar-shrink" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top"><img src="img/logo-white.png" width="30" height="30"
+                                                      class="d-inline-block align-top" alt="logo-white">
+        </a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="masthead" id="header-div">
+    <div id="search-div" class="container">
+        <div class="intro-text">
+            <span class="name">Music Quest</span>
+            <hr class="star-light">
+            <br/>
+        </div>
+        <div class="input-group input-group-lg">
+            <input class="form-control" type="search" ng-model="searchString" id="search-box"
+                   placeholder="Search your song here ...">
+        </div>
+        <br/>
+        <a href="#display-div">
+            <button id="search-btn" class="btn btn-primary btn-lg page-scroll"
+                    ng-click="searchSpotify()">Search
+            </button>
+        </a>
+        &nbsp;&nbsp;&nbsp;<button id="filter-btn" class="btn btn-secondary btn-lg page-scroll">Filter</button>
+        <br/>
+    </div>
+</header>
+
+<!-- Display Section -->
+<div id="display-div" class="container" ng-hide="searchComplete">
+    <table class="table sortable" id="display-table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Spotify ID</th>
+            <th>Track Name</th>
+            <th>Album Name</th>
+            <th>Duration (sec)</th>
+            <th>Popularity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="track in tracksList">
+            <td>{{track.id}}</td>
+            <td>{{track.name}}</td>
+            <td>{{track.albumName}}</td>
+            <td>{{track.duration}}</td>
+            <td>{{track.popularity}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer -->
+<footer class="text-center" id="footer-div">
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Copyright &copy; Created by Chintan Vachhani&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Uses
+                    Spotify Web-API
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top">
+    <a class="btn btn-primary page-scroll" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<!-- Bower Generated components -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.js"></script>
+<script src="js/sorttable.js"></script>
+
+<!-- Custom scripts from open source theme -->
+<script src="js/freelancer.js"></script>
+
+<!-- JavaScript for App & View -->
+<script src="app.js"></script>
+</body>
+</html>
