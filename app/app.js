@@ -1,5 +1,4 @@
 'use strict';
-
 // App level module
 angular.module('musicQuestApp', [
     'ngRoute'
@@ -9,11 +8,22 @@ angular.module('musicQuestApp', [
     $scope.prevResults = '';
     $scope.nextResults = '';
     $scope.searchSuccessful = false;
+    $scope.yearString = '';
+    $scope.genreString = '';
+    $scope.filters = '';
 
     // Function to get track search results on clicking Search button
     $scope.searchSpotify = function () {
-        $scope.requestURIString = "https://api.spotify.com/v1/search?q=" + $scope.searchString + "&type=track";
-        $scope.makeGETRequest($scope.requestURIString);
+        if ($scope.searchString !== '') {
+            if ($scope.yearString !== '') {
+                $scope.filters += "%20year:" + $scope.yearString;
+            }
+            if ($scope.genreString !== '') {
+                $scope.filters += "%20genre:" + $scope.genreString;
+            }
+            $scope.requestURIString = "https://api.spotify.com/v1/search?q=" + $scope.searchString + $scope.filters + "&type=track";
+            $scope.makeGETRequest($scope.requestURIString);
+        }
     };
 
     // Function to get next tracks for the search results on clicking Next button
@@ -34,7 +44,7 @@ angular.module('musicQuestApp', [
                 if (res.tracks.total > 0) {
                     $scope.prevResults = res.tracks.previous;
                     $scope.nextResults = res.tracks.next;
-                    for (var i = 0; i < res.tracks.items.length; ++i) {
+                    for (let i = 0; i < res.tracks.items.length; ++i) {
                         $scope.tracksList.push($scope.getNewTrack(res.tracks.items[i]));
                     }
                     $scope.searchSuccessful = true;
@@ -47,7 +57,7 @@ angular.module('musicQuestApp', [
 
     // Function to create a new track object to be added to a row in the table
     $scope.getNewTrack = function (obj) {
-        var newTrack = {id: '', name: '', albumName: '', duration: '', popularity: ''};
+        let newTrack = {id: '', name: '', albumName: '', duration: '', popularity: ''};
         newTrack.id = obj.id;
         newTrack.name = obj.name;
         newTrack.albumName = obj.album.name;
@@ -56,5 +66,3 @@ angular.module('musicQuestApp', [
         return newTrack;
     };
 });
-
-
